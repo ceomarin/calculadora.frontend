@@ -23,10 +23,6 @@ function dividir(num1, num2) {
     return num1 / num2;
 }
 
-function mostarResultado() {
-
-}
-
 function validar(elemento) {
     let valor = 0;
     let result = 0;
@@ -61,18 +57,21 @@ function validar(elemento) {
                 break;
         }
 
-    }else{
-        numero1.push(validar);
-        console.log(numero1);
-        arrayInputs.push(valor);
-
-        resultado.innerHTML = arrayInputs;
-        console.log(arrayInputs);
     }
+    // else{
+    //     numero1.push(validar);
+    //     console.log(numero1);
+    //     arrayInputs.push(valor);
+
+    //     resultado.innerHTML = arrayInputs;
+    //     console.log(arrayInputs);
+    // }
 
     if(validar === "="){
+        console.log(validar);
         switch (operacion) {
             case "+":
+                
                 resultado.innerHTML = sumar(arrayInputs[0],arrayInputs[1]);
                 arrayInputs = [];
                 document.querySelector("#sumar").classList.remove("disabled");
