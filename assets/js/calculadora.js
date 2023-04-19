@@ -2,9 +2,6 @@
 let resultado = document.querySelector(".resultado");
 let operacion = "";
 
-let numero1 = [];
-let numero2 = [];
-
 var arrayInputs = [];
 
 
@@ -28,84 +25,108 @@ function validar(elemento) {
     let result = 0;
     valor = $(elemento).data('value');
 
-    if(valor === "borrar" || valor === "/" || valor === "*"|| valor === "+" || valor === "-"|| valor === "."){
-        console.log(valor);
-        switch (valor) {
+    if (valor !== "borrar" || valor !== "/" || valor !== "*" || valor !== "+" || valor !== "-" || valor !== "=") {
+        arrayInputs.push(valor);
+        console.log(arrayInputs);
+    }
+    if (valor === "borrar" || valor === "/" || valor === "*" || valor === "+" || valor === "-" || valor === ".") {
+        operacion = valor;
+        switch (operacion) {
             case "+":
                 operacion = "+";
                 document.querySelector("#sumar").classList.add("disabled");
+                document.querySelector("#restar").classList.add("disabled");
+                document.querySelector("#multiplicar").classList.add("disabled");
+                document.querySelector("#dividir").classList.add("disabled");
                 break;
             case "-":
                 operacion = "-";
+                document.querySelector("#sumar").classList.add("disabled");
                 document.querySelector("#restar").classList.add("disabled");
-            break;
+                document.querySelector("#multiplicar").classList.add("disabled");
+                document.querySelector("#dividir").classList.add("disabled");
+                break;
             case "*":
                 operacion = "*";
+                document.querySelector("#sumar").classList.add("disabled");
+                document.querySelector("#restar").classList.add("disabled");
                 document.querySelector("#multiplicar").classList.add("disabled");
-            break;
+                document.querySelector("#dividir").classList.add("disabled");
+                break;
             case "/":
                 operacion = "/";
+                document.querySelector("#sumar").classList.add("disabled");
+                document.querySelector("#restar").classList.add("disabled");
+                document.querySelector("#multiplicar").classList.add("disabled");
                 document.querySelector("#dividir").classList.add("disabled");
-            break;
+                break;
             case "borrar":
-                operacion = "borrar";
                 resultado.innerHTML = "0.0";
                 arrayInputs = [];
-                console.log(arrayInputs);
-            break;
+                // console.log(arrayInputs);
+                operacion = "";
+                document.querySelector("#sumar").classList.remove("disabled");
+                document.querySelector("#restar").classList.remove("disabled");
+                document.querySelector("#multiplicar").classList.remove("disabled");
+                document.querySelector("#dividir").classList.remove("disabled");
+                break;
             default:
                 break;
         }
 
     }
-    // else{
-    //     numero1.push(validar);
-    //     console.log(numero1);
-    //     arrayInputs.push(valor);
 
-    //     resultado.innerHTML = arrayInputs;
-    //     console.log(arrayInputs);
-    // }
-
-    if(validar === "="){
-        console.log(validar);
+    if (valor === "=") {
+        console.log(valor);
         switch (operacion) {
             case "+":
-                
-                resultado.innerHTML = sumar(arrayInputs[0],arrayInputs[1]);
+
+                resultado.innerHTML = sumar(arrayInputs[0], arrayInputs[1]);
                 arrayInputs = [];
                 document.querySelector("#sumar").classList.remove("disabled");
+                document.querySelector("#restar").classList.remove("disabled");
+                document.querySelector("#multiplicar").classList.remove("disabled");
+                document.querySelector("#dividir").classList.remove("disabled");
                 operacion = "";
                 break;
             case "-":
-                resultado.innerHTML = restar(arrayInputs[0],arrayInputs[1]);
+                resultado.innerHTML = restar(arrayInputs[0], arrayInputs[1]);
                 arrayInputs = [];
+                document.querySelector("#sumar").classList.remove("disabled");
                 document.querySelector("#restar").classList.remove("disabled");
-                operacion = "";
-            break;
-            case "*":
-                resultado.innerHTML = multiplicar(arrayInputs[0],arrayInputs[1]);
-                arrayInputs = [];
                 document.querySelector("#multiplicar").classList.remove("disabled");
-                operacion = "";
-            break;
-            case "/":
-                resultado.innerHTML = dividir(arrayInputs[0],arrayInputs[1]);
-                arrayInputs = [];
                 document.querySelector("#dividir").classList.remove("disabled");
                 operacion = "";
-            break;
+                break;
+            case "*":
+                resultado.innerHTML = multiplicar(arrayInputs[0], arrayInputs[1]);
+                arrayInputs = [];
+                document.querySelector("#sumar").classList.remove("disabled");
+                document.querySelector("#restar").classList.remove("disabled");
+                document.querySelector("#multiplicar").classList.remove("disabled");
+                document.querySelector("#dividir").classList.remove("disabled");
+                operacion = "";
+                break;
+            case "/":
+                resultado.innerHTML = dividir(arrayInputs[0], arrayInputs[1]);
+                arrayInputs = [];
+                document.querySelector("#sumar").classList.remove("disabled");
+                document.querySelector("#restar").classList.remove("disabled");
+                document.querySelector("#multiplicar").classList.remove("disabled");
+                document.querySelector("#dividir").classList.remove("disabled");
+                operacion = "";
+                break;
             case "borrar":
                 resultado.innerHTML = "0.0";
                 arrayInputs = [];
-                console.log(arrayInputs);
+                // console.log(arrayInputs);
                 operacion = "";
                 document.querySelector("#sumar").classList.remove("disabled");
                 document.querySelector("#restar").classList.remove("disabled");
                 document.querySelector("#multiplicar").classList.remove("disabled");
                 document.querySelector("#dividir").classList.remove("disabled");
 
-            break;
+                break;
             default:
                 break;
         }
@@ -113,4 +134,4 @@ function validar(elemento) {
 
 
 
-  }
+}
